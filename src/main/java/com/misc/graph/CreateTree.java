@@ -15,29 +15,29 @@ public class CreateTree {
         generateItsChilds(node);
         tree.setNode(node);
         System.out.println("MainTree:" + tree);
-        traverse(tree);
+        copyTree(tree);
     }
 
-    private static void traverse(Tree tree) {
+    private static void copyTree(Tree tree) {
         Node treeRoot = tree.getNode();
         Tree tree2=new Tree();
         Node anotherTree = new Node();
         anotherTree.setId("Another-Tree-Root");
         tree2.setNode(anotherTree);
-        copyTOAnotherTree(treeRoot, anotherTree);
+        copyToAnotherTree(treeRoot, anotherTree);
         System.out.println("Another-Tree:" + tree2);
     }
 
-    private static void copyTOAnotherTree(Node root, Node anotherTree) {
+    private static void copyToAnotherTree(Node root, Node anotherTree) {
         List<Node> childs = root.getChilds();
         if (childs != null && anotherTree.getChilds() == null) {
             anotherTree.setChilds(root.getChilds());
-            copyTOAnotherTree(root, anotherTree);
+            copyToAnotherTree(root, anotherTree);
         }
         if (childs != null && anotherTree.getChilds() != null) {
             for (int i = 0; i < childs.size(); i++) {
                 anotherTree.getChilds().get(i).setChilds(childs.get(i).getChilds());
-                copyTOAnotherTree(childs.get(i), anotherTree.getChilds().get(i));
+                copyToAnotherTree(childs.get(i), anotherTree.getChilds().get(i));
             }
         }
     }
