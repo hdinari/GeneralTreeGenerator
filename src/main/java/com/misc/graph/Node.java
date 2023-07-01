@@ -3,7 +3,7 @@ package com.misc.graph;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class Node {
+public class Node implements Cloneable {
     private String id;
     private int levelNumber;
     private List<Node> childs;
@@ -30,6 +30,11 @@ public class Node {
 
     public void setChilds(List<Node> childs) {
         this.childs = childs;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     @Override
